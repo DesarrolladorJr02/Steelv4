@@ -16,14 +16,14 @@ app.get('/addhorarioasitencia', async (req, res) => {
 )
 app.put("/registrarhorario", async (req, res) => {
     try {
-        console.log(req.body);
+        //console.log(req.body);
         const id = req.body.id;
         const horainicio = req.body.horainicio;
         const horafin = req.body.horafin;
         const descanso = req.body.descanso;
-        const horainicioMD = req.body.horainicioMD;
-        const horafinMD = req.body.horafinMD;
-        if (id && horainicio && horafin && descanso) {
+        const horainicioMD = (req.body.horainicioMD) ? req.body.horainicioMD : "NA";
+        const horafinMD = (req.body.horafinMD ? req.body.horafinMD : "NA");
+        if (id && horainicio && horafin) {
             const respuesta = await registrarhorarios(id, horainicio, horafin, horainicioMD, horafinMD);
             res.status(200).json(respuesta);
         } else {
