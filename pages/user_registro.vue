@@ -8,8 +8,8 @@
         'items-per-page-options': [10, 20, 30, 40, 50],
       }" :items-per-page="10" :sort-desc="true">
         <template v-slot:item.concatenado="{ item }">
-          <v-btn @click="registrar = true, formData.id = item.idAlta"
-            color="transparent"><v-icon>mdi-plus-thick theme--dark
+          <v-btn @click="registrar = true, formData.id = item.idAlta" color="transparent"><v-icon>mdi-plus-thick
+              theme--dark
               green--text</v-icon></v-btn>
         </template>
       </v-data-table>
@@ -144,12 +144,6 @@ export default {
 
   async mounted() {
     this.mostrar();
-
-    this.socket = io("http://192.168.1.97:3003");
-    this.socket.on("escuchando", (datos) => {
-      //console.log(datos);
-      this.mostrar();
-    });
   },
   methods: {
     async descansos() {
@@ -157,6 +151,8 @@ export default {
         this.formData.descanso.includes("Sábado") &&
         this.formData.descanso.includes("Domingo")
       ) {
+        this.formData.horainicioMD = "";
+        this.formData.horafinMD = "";
         //console.log(this.formData.descanso);
         this.relojMD = false;
       } else {
@@ -181,7 +177,7 @@ export default {
     },
 
     async submitForm() {
-      console.log("this.formData ", this.formData);
+      //console.log("this.formData ", this.formData);
       const res = await fetch("https://192.168.1.97:3001/registrarhorario", {
         method: "PUT",
         headers: {
