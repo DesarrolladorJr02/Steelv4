@@ -13,9 +13,6 @@
               green--text</v-icon></v-btn>
         </template>
       </v-data-table>
-      <v-btn icon @click="registrar = true" style="margin-left: 15px; margin-top: 5px">
-        <v-icon style="font-size: 50px">mdi-plus-circle theme--dark green--text</v-icon>
-      </v-btn>
 
       <!-- Formulario insertar -->
       <template>

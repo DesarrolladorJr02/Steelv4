@@ -1,7 +1,19 @@
 //registrar horarios
 const registrarhorarios = require('./checadorhuella/registrarhorarios');
+const listarTodoPersonal = require('./checadorhuella/listarTodoPersonal');
 
-
+app.get('/addhorarioasitencia', async (req, res) => {
+    const respuesta2 = await listarTodoPersonal();
+    const respuesta = respuesta2.map((datos) => {
+        return {
+            ...datos,
+            huella: (datos.FinguerPrint) ? "ACTIVO" : "INACTIVO"
+        }
+    })
+    //console.log(respuesta2);
+    res.status(200).json(respuesta);
+}
+)
 app.put("/registrarhorario", async (req, res) => {
     try {
         console.log(req.body);
